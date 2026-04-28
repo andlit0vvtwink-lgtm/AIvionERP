@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import Layout from './components/Layout';
 import Projects from './pages/Projects';
@@ -10,12 +10,11 @@ import Clients from './pages/Clients';
 import ClientDetail from './pages/ClientDetail';
 import Materials from './pages/Materials';
 import SearchPage from './pages/Search';
-import Settings from './pages/Settings';
 import Sites from './pages/Sites';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ThemeProvider>
         <Routes>
           <Route element={<Layout />}>
@@ -28,11 +27,11 @@ export default function App() {
             <Route path="/clients/:clientId" element={<ClientDetail />} />
             <Route path="/materials" element={<Materials />} />
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/settings" element={<Settings />} />
             <Route path="/sites" element={<Sites />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
       </ThemeProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
