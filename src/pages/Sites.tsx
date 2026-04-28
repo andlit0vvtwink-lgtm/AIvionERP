@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
-const trends = ['+12%', '-4%', '+2.1%', '+8.6%'];
+const trends = ['+12.4%', '-4.2%', '+2.1%', '-1.3%'];
 
 export default function Sites() {
   const [selectedSite, setSelectedSite] = useState<string | null>(null);
@@ -15,7 +15,7 @@ export default function Sites() {
     <div>
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-3xl font-semibold tracking-tight">Сайты</h1>
-        <Button className="gap-2 bg-[#ff4d00] hover:bg-[#ff6726]"><Plus className="h-4 w-4" /> Добавить сайт</Button>
+        <Button className="gap-2"><Plus className="h-4 w-4" /> Добавить сайт</Button>
       </div>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -29,11 +29,11 @@ export default function Sites() {
           ];
 
           return (
-            <Card key={s.id} className="cursor-pointer overflow-hidden border-white/10 bg-[#151927] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#ff4d00]/50 hover:shadow-[0_18px_36px_rgba(255,77,0,0.2)]" onClick={() => setSelectedSite(s.id)}>
-              <div className="relative h-40 bg-gradient-to-br from-slate-900 to-black">
-                <div className="absolute inset-3 rounded-xl border border-white/10 bg-black/35 p-3">
+            <Card key={s.id} className="cursor-pointer overflow-hidden bg-[#17171C] transition-all duration-200 ds-card-hover" onClick={() => setSelectedSite(s.id)}>
+              <div className="relative h-40 bg-[#121216]">
+                <div className="absolute inset-3 rounded-2xl border border-white/10 bg-black/35 p-3">
                   <div className="mb-2 text-[11px] text-white/60">Site Preview</div>
-                  <div className="h-16 rounded bg-gradient-to-r from-[#ff4d00]/45 to-purple-500/30 shadow-[0_0_24px_rgba(255,77,0,0.32)]" />
+                  <div className="h-16 rounded-2xl bg-[#F4511E]/30 shadow-[0_0_24px_rgba(244,81,30,0.22)]" />
                   <div className="mt-2 grid grid-cols-3 gap-1"><div className="h-3 rounded bg-white/10" /><div className="h-3 rounded bg-white/10" /><div className="h-3 rounded bg-white/10" /></div>
                 </div>
                 <div className="absolute right-3 top-3 rounded-full border border-white/10 bg-black/60 px-2 py-1 text-xs">#{index + 1}</div>
@@ -47,7 +47,7 @@ export default function Sites() {
                     const trend = trends[i];
                     const positive = trend.startsWith('+');
                     return (
-                      <div key={`${s.id}-${i}`} className="rounded-lg border border-white/10 bg-white/5 p-2">
+                      <div key={`${s.id}-${i}`} className="rounded-xl border border-white/10 bg-[#1D1D24] p-2">
                         {metric.icon}
                         <div className="mb-1">{metric.label}</div>
                         <div className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] ${positive ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'}`}>
@@ -65,7 +65,7 @@ export default function Sites() {
 
       {site && (
         <Dialog open={!!site} onOpenChange={() => setSelectedSite(null)}>
-          <DialogContent className="max-w-5xl border-white/10 bg-[#11141d]">
+          <DialogContent className="max-w-5xl bg-[#121216]">
             <DialogHeader><DialogTitle className="flex items-center gap-2 text-2xl"><Globe className="h-6 w-6 text-[#ff4d00]" />{site.name}</DialogTitle></DialogHeader>
             <div className="mt-2 grid grid-cols-2 gap-3 md:grid-cols-3">
               {[

@@ -26,13 +26,13 @@ export default function Clients() {
         <h1 className="text-3xl font-semibold tracking-tight">Клиенты</h1>
         <Dialog open={openModal} onOpenChange={setOpenModal}>
           <DialogTrigger asChild>
-            <Button className="gap-2 bg-[#ff4d00] hover:bg-[#ff6726]"><Plus className="h-4 w-4" /> Клиент</Button>
+            <Button className="gap-2 "><Plus className="h-4 w-4" /> Клиент</Button>
           </DialogTrigger>
-          <DialogContent className="border-white/10 bg-[#11141d]">
+          <DialogContent className="h-auto min-h-0 max-w-lg w-full border-white/10 bg-[#121216]">
             <DialogHeader><DialogTitle>Новый клиент</DialogTitle></DialogHeader>
             <div className="space-y-3 mt-2">
               <Input placeholder="Имя" /><Input placeholder="Компания" /><Input placeholder="Тип бизнеса" /><Input placeholder="Детали" />
-              <Button className="w-full bg-[#ff4d00] hover:bg-[#ff6726]" onClick={() => setOpenModal(false)}>Добавить</Button>
+              <Button className="w-full " onClick={() => setOpenModal(false)}>Добавить</Button>
             </div>
           </DialogContent>
         </Dialog>
@@ -43,7 +43,7 @@ export default function Clients() {
         <Input placeholder="Поиск по клиентам..." className="w-72 h-9 border-white/15 bg-black/20 text-sm" value={search} onChange={(e) => setSearch(e.target.value)} />
       </div>
 
-      <div className="border border-white/10 rounded-2xl overflow-hidden bg-[#12161f]">
+      <div className="border ds-card overflow-hidden bg-[#17171C]">
         <table className="w-full text-sm">
           <thead className="bg-white/5">
             <tr>

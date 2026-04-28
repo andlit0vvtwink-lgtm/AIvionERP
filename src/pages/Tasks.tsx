@@ -71,7 +71,7 @@ export default function Tasks() {
               </div>
               <div className="space-y-2 min-h-[120px]">
                 {filtered.filter((t) => t.status === col.id).map((task) => (
-                  <Card key={task.id} className={`cursor-pointer border-white/10 bg-[#151927] transition-all hover:-translate-y-0.5 hover:border-[#ff4d00]/40 ${priorityColors[task.priority]}`} onClick={() => setSelectedTask(task.id)}>
+                  <Card key={task.id} className={`cursor-pointer border-white/10 bg-[#17171C] transition-all hover:-translate-y-0.5 hover:border-[#ff4d00]/40 ${priorityColors[task.priority]}`} onClick={() => setSelectedTask(task.id)}>
                     <CardContent className="p-3">
                       <div className="mb-1 text-sm font-medium">{task.title}</div>
                       <div className="flex items-center justify-between text-xs text-muted-foreground"><span>{task.id}</span><span>{task.deadline}</span></div>
@@ -88,7 +88,7 @@ export default function Tasks() {
           ))}
         </div>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#12161f]">
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#17171C]">
           <table className="w-full text-sm">
             <thead className="bg-white/5"><tr><th className="px-3 py-2 text-left font-medium">ID</th><th className="px-3 py-2 text-left font-medium">Название</th><th className="px-3 py-2 text-left font-medium">Статус</th><th className="px-3 py-2 text-left font-medium">Приоритет</th><th className="px-3 py-2 text-left font-medium">Исполнитель</th><th className="px-3 py-2 text-left font-medium">Дедлайн</th></tr></thead>
             <tbody>

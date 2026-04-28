@@ -17,8 +17,8 @@ export function RightPanel({ isOpen, onClose, entity }: RightPanelProps) {
   const summary = aiSummaries[entity.id] || 'AI-анализ недоступен для этого объекта.';
 
   return (
-    <aside className="fixed right-0 top-16 bottom-0 w-80 glass-panel border-l border-white/10 z-40 overflow-y-auto">
-      <div className="p-4 border-b border-white/10 flex items-center justify-between">
+    <aside className="fixed right-0 top-16 bottom-0 w-80 border-l border-white/10 z-40 overflow-y-auto bg-[#121216]">
+      <div className="p-4 border-b border-white/10 flex items-center justify-between bg-[#17171C]">
         <h3 className="font-semibold text-sm">Детали</h3>
         <Button variant="ghost" size="icon" onClick={onClose}>
           <X className="h-4 w-4" />
@@ -36,7 +36,7 @@ export function RightPanel({ isOpen, onClose, entity }: RightPanelProps) {
         {entity.tags && entity.tags.length > 0 && (
           <div className="flex flex-wrap gap-1">
             {entity.tags.map((t) => (
-              <span key={t} className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{t}</span>
+              <span key={t} className="text-xs px-2 py-0.5 rounded-full border border-white/10 bg-[#1D1D24] text-[#B3B3BA]">{t}</span>
             ))}
           </div>
         )}

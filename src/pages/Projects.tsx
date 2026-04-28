@@ -9,8 +9,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
 const statusMap: Record<string, { label: string; color: string }> = {
-  active: { label: 'Активный', color: 'bg-green-500' },
-  'on-hold': { label: 'На паузе', color: 'bg-amber-500' },
+  active: { label: 'Активный', color: 'bg-[#22C55E]/20 text-[#86efac] border-[#22C55E]/35' },
+  'on-hold': { label: 'На паузе', color: 'bg-[#F59E0B]/20 text-[#fbbf24] border-[#F59E0B]/35' },
 };
 
 const projectFiles = [
@@ -29,16 +29,16 @@ export default function Projects() {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-3xl font-semibold tracking-tight">Проекты</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Проекты</h1>
         <Dialog open={openModal} onOpenChange={setOpenModal}>
           <DialogTrigger asChild>
-            <Button className="gap-2 bg-[#ff4d00] hover:bg-[#ff6726]"><Plus className="h-4 w-4" /> Новый проект</Button>
+            <Button className="gap-2"><Plus className="h-4 w-4" /> Новый проект</Button>
           </DialogTrigger>
-          <DialogContent className="border-white/10 bg-[#11141d]">
+          <DialogContent className="h-auto min-h-0 max-w-xl w-full overflow-visible">
             <DialogHeader><DialogTitle>Новый проект</DialogTitle></DialogHeader>
             <div className="mt-2 space-y-3">
-              <Input placeholder="Название проекта" className="border-white/15 bg-black/20" /><Textarea placeholder="Описание" className="border-white/15 bg-black/20" /><Input placeholder="Клиент" className="border-white/15 bg-black/20" /><Input placeholder="Участники (через запятую)" className="border-white/15 bg-black/20" /><Input type="date" placeholder="Дедлайн" className="border-white/15 bg-black/20" />
-              <Button className="w-full bg-[#ff4d00] hover:bg-[#ff6726]" onClick={() => setOpenModal(false)}>Создать</Button>
+              <Input placeholder="Название проекта" /><Textarea placeholder="Описание" /><Input placeholder="Клиент" /><Input placeholder="Участники (через запятую)" /><Input type="date" placeholder="Дедлайн" />
+              <Button className="w-full" onClick={() => setOpenModal(false)}>Создать</Button>
             </div>
           </DialogContent>
         </Dialog>
@@ -48,26 +48,26 @@ export default function Projects() {
         {projects.map((project) => {
           const badge = statusMap[project.status] || statusMap.active;
           return (
-            <Card key={project.id} className="group relative cursor-pointer overflow-hidden border border-white/10 bg-[#151927] transition-all duration-300 hover:-translate-y-1 hover:border-[#ff4d00]/60 hover:shadow-[0_14px_34px_rgba(255,77,0,0.2)]" onClick={() => setSelectedProject(project.id)}>
+            <Card key={project.id} className="group relative cursor-pointer overflow-hidden bg-[#17171C] transition-all duration-200 ds-card-hover" onClick={() => setSelectedProject(project.id)}>
               <div className="absolute left-0 top-0 h-full w-1" style={{ backgroundColor: project.color }} />
               <CardContent className="p-4">
                 <div className="mb-2 flex items-start justify-between">
-                  <h3 className="pr-6 text-base font-semibold">{project.name}</h3>
+                  <h3 className="pr-6 text-base font-bold">{project.name}</h3>
                   <Button size="sm" variant="ghost" className="absolute right-3 top-3 h-7 w-7 p-0"><MoreHorizontal className="h-3.5 w-3.5" /></Button>
                 </div>
-                <Badge variant="secondary" className={`${badge.color} mb-3 text-[10px] text-white`}>{badge.label}</Badge>
-                <p className="mb-3 line-clamp-2 text-sm text-muted-foreground">{project.summary}</p>
-                <div className="mb-3 flex items-center gap-4 text-xs text-muted-foreground">
+                <Badge variant="outline" className={`${badge.color} mb-3 text-[10px]`}>{badge.label}</Badge>
+                <p className="mb-3 line-clamp-2 text-sm text-[#B3B3BA]">{project.summary}</p>
+                <div className="mb-3 flex items-center gap-4 text-xs text-[#7B7B85]">
                   <div className="flex items-center gap-1"><Calendar className="h-3 w-3" />{project.deadline}</div>
                   <div className="flex items-center gap-1"><Users className="h-3 w-3" />{project.members.length}</div>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex -space-x-1.5">
                     {project.members.map((m, i) => (
-                      <div key={i} className="flex h-6 w-6 items-center justify-center rounded-full border border-background bg-muted text-[10px] font-medium">{m[0]}</div>
+                      <div key={i} className="flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-[#1D1D24] text-[10px] font-medium">{m[0]}</div>
                     ))}
                   </div>
-                  <span className="text-xs text-muted-foreground">{project.taskCount} задач</span>
+                  <span className="text-xs text-[#7B7B85]">{project.taskCount} задач</span>
                 </div>
               </CardContent>
             </Card>
@@ -77,41 +77,41 @@ export default function Projects() {
 
       {currentProject && (
         <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="h-[90vh] max-w-[1280px] overflow-y-auto border-white/10 bg-[#11141d]">
+          <DialogContent className="overflow-y-auto">
             <DialogHeader>
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <DialogTitle className="text-3xl font-semibold">{currentProject.name}</DialogTitle>
-                  <p className="mt-2 text-sm text-white/70">{currentProject.summary}</p>
+                  <DialogTitle className="text-4xl font-bold">{currentProject.name}</DialogTitle>
+                  <p className="mt-3 text-base text-[#B3B3BA]">{currentProject.summary}</p>
                 </div>
-                <Button size="sm" className="gap-2 border border-white/20 bg-white/10 hover:bg-white/15"><PenSquare className="h-4 w-4" />Редактировать</Button>
+                <Button size="sm" variant="secondary" className="gap-2"><PenSquare className="h-4 w-4" />Редактировать</Button>
               </div>
             </DialogHeader>
 
-            <div className="mt-3 grid gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-sm sm:grid-cols-2 lg:grid-cols-5">
-              <div><div className="text-xs text-white/50">Статус</div><Badge className="mt-1 bg-[#ff4d00]">{statusMap[currentProject.status]?.label || 'Активный'}</Badge></div>
-              <div><div className="text-xs text-white/50">Дата создания</div><div className="mt-1">2026-04-10</div></div>
-              <div><div className="text-xs text-white/50">Подпроекты</div><div className="mt-1">{relatedSubprojects.length}</div></div>
-              <div><div className="text-xs text-white/50">Задач</div><div className="mt-1">{currentProject.taskCount}</div></div>
-              <div><div className="text-xs text-white/50">Дедлайн</div><div className="mt-1">{currentProject.deadline}</div></div>
+            <div className="mt-3 grid gap-3 ds-surface p-4 text-sm sm:grid-cols-2 lg:grid-cols-5">
+              <div><div className="text-xs text-[#7B7B85]">Статус</div><Badge className="mt-1">{statusMap[currentProject.status]?.label || 'Активный'}</Badge></div>
+              <div><div className="text-xs text-[#7B7B85]">Дата создания</div><div className="mt-1">2026-04-10</div></div>
+              <div><div className="text-xs text-[#7B7B85]">Подпроекты</div><div className="mt-1">{relatedSubprojects.length}</div></div>
+              <div><div className="text-xs text-[#7B7B85]">Задач</div><div className="mt-1">{currentProject.taskCount}</div></div>
+              <div><div className="text-xs text-[#7B7B85]">Дедлайн</div><div className="mt-1">{currentProject.deadline}</div></div>
             </div>
 
             <div className="mt-6">
               <div className="mb-3 flex items-center justify-between">
-                <h3 className="text-xl font-semibold">Подпроекты</h3>
-                <Button className="bg-[#ff4d00] hover:bg-[#ff6726]"><Plus className="mr-1 h-4 w-4" />Создать подпроект</Button>
+                <h3 className="text-xl font-bold">Подпроекты</h3>
+                <Button><Plus className="mr-1 h-4 w-4" />Создать подпроект</Button>
               </div>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {relatedSubprojects.map((sub) => (
-                  <Card key={sub.id} className="group cursor-pointer overflow-hidden border border-white/10 bg-[#151927] transition-all duration-300 hover:-translate-y-1 hover:border-[#ff4d00]/60 hover:shadow-[0_14px_34px_rgba(255,77,0,0.2)]">
+                  <Card key={sub.id} className="group cursor-pointer overflow-hidden bg-[#17171C] transition-all duration-200 ds-card-hover">
                     <CardContent className="p-4">
-                      <h4 className="font-semibold">{sub.name}</h4>
-                      <p className="mt-2 line-clamp-2 text-xs text-white/65">{sub.summary}</p>
+                      <h4 className="font-bold">{sub.name}</h4>
+                      <p className="mt-2 line-clamp-2 text-xs text-[#B3B3BA]">{sub.summary}</p>
                       <div className="mt-3 flex items-center justify-between text-xs">
-                        <Badge className="bg-white/10">{statusMap[sub.status]?.label || sub.status}</Badge>
-                        <span className="text-white/60">{sub.taskCount} задач</span>
+                        <Badge variant="secondary">{statusMap[sub.status]?.label || sub.status}</Badge>
+                        <span className="text-[#7B7B85]">{sub.taskCount} задач</span>
                       </div>
-                      <div className="mt-3 h-1.5 rounded-full bg-white/10"><div className="h-full rounded-full bg-[#ff4d00]" style={{ width: `${Math.min(100, sub.taskCount * 12)}%` }} /></div>
+                      <div className="mt-3 h-1.5 rounded-full bg-white/10"><div className="h-full rounded-full bg-[#F4511E]" style={{ width: `${Math.min(100, sub.taskCount * 12)}%` }} /></div>
                     </CardContent>
                   </Card>
                 ))}
@@ -119,18 +119,18 @@ export default function Projects() {
             </div>
 
             <div className="mt-6">
-              <h3 className="mb-3 text-xl font-semibold">Материалы / Файлы</h3>
+              <h3 className="mb-3 text-xl font-bold">Материалы / Файлы</h3>
               <div className="space-y-2">
                 {projectFiles.map((file) => (
-                  <div key={file.name} className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-3 transition-colors hover:bg-white/[0.05]">
+                  <div key={file.name} className="flex items-center justify-between rounded-2xl border border-white/10 bg-[#17171C] p-3 transition-colors hover:bg-[#1D1D24]">
                     <div className="flex items-center gap-3">
-                      <div className="rounded-lg bg-[#ff4d00]/20 p-2"><FileDown className="h-4 w-4 text-[#ff8a5f]" /></div>
+                      <div className="rounded-xl bg-[#F4511E]/20 p-2"><FileDown className="h-4 w-4 text-[#FF7A4D]" /></div>
                       <div>
-                        <div className="text-sm font-medium">{file.name}</div>
-                        <div className="text-xs text-white/50">{file.size} • загружен {file.date}</div>
+                        <div className="text-sm font-semibold">{file.name}</div>
+                        <div className="text-xs text-[#7B7B85]">{file.size} • загружен {file.date}</div>
                       </div>
                     </div>
-                    <Button size="sm" variant="ghost" className="text-[#ff8a5f]">Открыть</Button>
+                    <Button size="sm" variant="ghost" className="text-[#FF7A4D]">Открыть</Button>
                   </div>
                 ))}
               </div>
