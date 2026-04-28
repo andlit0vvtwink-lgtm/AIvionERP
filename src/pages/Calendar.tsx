@@ -67,7 +67,7 @@ export default function CalendarPage() {
       </div>
 
       {view === 'month' && (
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#12161f]">
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#17171C]">
           <div className="grid grid-cols-7 bg-white/5 py-2 text-center text-sm font-medium">{['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((d) => <div key={d}>{d}</div>)}</div>
           <div className="grid grid-cols-7">
             {days.map((day, i) => {
@@ -90,7 +90,7 @@ export default function CalendarPage() {
       )}
 
       {view === 'week' && (
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#12161f]">
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#17171C]">
           <div className="grid grid-cols-7 bg-white/5 py-2 text-center text-sm font-medium">{weekDays.map((d) => <div key={d.toISOString()} className={isToday(d) ? 'text-[#ff4d00]' : ''}>{format(d, 'EEE d', { locale: ru })}</div>)}</div>
           <div className="grid grid-cols-7">
             {weekDays.map((day) => (
@@ -109,7 +109,7 @@ export default function CalendarPage() {
       )}
 
       {view === 'day' && (
-        <div className="rounded-2xl border border-white/10 bg-[#12161f] p-4">
+        <div className="rounded-2xl border border-white/10 bg-[#17171C] p-4">
           <h3 className="mb-3 text-lg font-semibold">{format(currentDate, 'EEEE, d MMMM yyyy', { locale: ru })}</h3>
           <div className="space-y-2">
             {getEventsForDay(currentDate).map((e) => (

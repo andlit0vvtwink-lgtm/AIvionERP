@@ -37,9 +37,9 @@ export default function Materials() {
         <h1 className="text-3xl font-semibold tracking-tight">Материалы</h1>
         <Dialog open={openModal} onOpenChange={(open) => (open ? setOpenModal(true) : resetModal())}>
           <DialogTrigger asChild>
-            <Button className="gap-2 bg-[#ff4d00] hover:bg-[#ff6726]"><Plus className="h-4 w-4" /> Добавить</Button>
+            <Button className="gap-2 "><Plus className="h-4 w-4" /> Добавить</Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl border-white/10 bg-[#11141d]">
+          <DialogContent className="h-auto min-h-0 max-w-2xl w-full border-white/10 bg-[#121216]">
             <DialogHeader><DialogTitle>Добавить новый материал</DialogTitle></DialogHeader>
             {step === 1 && (
               <div className="space-y-4 mt-2">
@@ -49,7 +49,7 @@ export default function Materials() {
                   <Button size="sm" variant={newType === 'link' ? 'default' : 'outline'} className="gap-1" onClick={() => setNewType('link')}><Link2 className="h-3 w-3" /> Ссылка</Button>
                   <Button size="sm" variant={newType === 'note' ? 'default' : 'outline'} className="gap-1" onClick={() => setNewType('note')}><StickyNote className="h-3 w-3" /> Заметка</Button>
                 </div>
-                <Button disabled={!materialName || !newType} className="w-full bg-[#ff4d00] hover:bg-[#ff6726]" onClick={() => setStep(2)}>Продолжить</Button>
+                <Button disabled={!materialName || !newType} className="w-full " onClick={() => setStep(2)}>Продолжить</Button>
               </div>
             )}
             {step === 2 && newType === 'file' && (
@@ -59,20 +59,20 @@ export default function Materials() {
                   <p className="text-sm">Перетащите файл сюда или выберите с устройства.</p>
                   <Button variant="outline" className="mt-3">Выбрать файл</Button>
                 </div>
-                <Button className="w-full bg-[#ff4d00] hover:bg-[#ff6726]" onClick={resetModal}>Сохранить материал</Button>
+                <Button className="w-full " onClick={resetModal}>Сохранить материал</Button>
               </div>
             )}
             {step === 2 && newType === 'link' && (
               <div className="space-y-3 mt-2">
                 <Input placeholder="URL ссылки" />
                 <Textarea placeholder="Краткое описание (опционально)" rows={4} />
-                <Button className="w-full bg-[#ff4d00] hover:bg-[#ff6726]" onClick={resetModal}>Сохранить материал</Button>
+                <Button className="w-full " onClick={resetModal}>Сохранить материал</Button>
               </div>
             )}
             {step === 2 && newType === 'note' && (
               <div className="space-y-3 mt-2">
                 <Textarea placeholder="Текст заметки" rows={8} />
-                <Button className="w-full bg-[#ff4d00] hover:bg-[#ff6726]" onClick={resetModal}>Сохранить материал</Button>
+                <Button className="w-full " onClick={resetModal}>Сохранить материал</Button>
               </div>
             )}
           </DialogContent>
@@ -89,7 +89,7 @@ export default function Materials() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filtered.map((mat) => (
-          <Card key={mat.id} className="overflow-hidden border-white/10 bg-[#11141d] hover:border-[#FF6B35]/40 transition-all hover:-translate-y-1">
+          <Card key={mat.id} className="overflow-hidden border-white/10 bg-[#121216] hover:border-[#FF6B35]/40 transition-all hover:-translate-y-1">
             <CardContent className="p-0">
               {mat.type === 'link' && mat.previewUrl ? (
                 <div className="relative">

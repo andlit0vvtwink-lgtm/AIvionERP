@@ -1,51 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 17 100% 56%;
+    --background: 240 8% 5%;
+    --foreground: 0 0% 100%;
+    --card: 240 9% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 9% 12%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 17 91% 54%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 17 100% 56%;
+    --secondary: 240 8% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 7% 14%;
+    --muted-foreground: 240 6% 72%;
+    --accent: 17 100% 57%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 17 100% 56%;
-    --radius: 0.9rem;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.08;
+    --ring: 17 91% 54%;
+    --radius: 1rem;
   }
 
   .dark {
-    --background: 224 27% 7%;
-    --foreground: 0 0% 98%;
-    --card: 224 22% 11%;
-    --card-foreground: 0 0% 98%;
-    --popover: 224 22% 11%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 17 100% 56%;
+    --background: 240 8% 5%;
+    --foreground: 0 0% 100%;
+    --card: 240 9% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 9% 12%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 17 91% 54%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 225 16% 15%;
+    --secondary: 240 8% 12%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 225 16% 15%;
-    --muted-foreground: 225 9% 66%;
-    --accent: 17 100% 56%;
+    --muted: 240 7% 14%;
+    --muted-foreground: 240 6% 72%;
+    --accent: 17 100% 57%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 225 15% 20%;
-    --input: 225 15% 20%;
-    --ring: 17 100% 56%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.08;
+    --ring: 17 91% 54%;
   }
 }
 
@@ -53,10 +55,14 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif;
+    font-family: 'Manrope', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.01em;
+    background-image: radial-gradient(circle at 8% 0%, rgba(244, 81, 30, 0.15), transparent 30%), radial-gradient(circle at 92% 90%, rgba(201, 90, 50, 0.1), transparent 26%);
   }
+
   button,
   a,
   input,
@@ -67,12 +73,33 @@
 }
 
 @layer components {
-  .glass-panel {
-    @apply bg-slate-900/65 backdrop-blur-xl;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 24px 60px rgba(0, 0, 0, 0.5);
+  .premium-bg {
+    background: #0b0b0d;
   }
 
-  .premium-bg {
-    background-image: radial-gradient(circle at 15% 10%, rgba(255, 77, 0, 0.22), transparent 30%), radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.14), transparent 30%), linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 30%);
+  .glass-panel {
+    @apply bg-[#121216]/95 backdrop-blur-md;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+  }
+
+  .ds-card {
+    @apply rounded-[22px] border border-white/10 bg-[#17171C] shadow-[0_14px_28px_rgba(0,0,0,0.34)];
+  }
+
+  .ds-card-hover {
+    @apply hover:-translate-y-1 hover:border-[#F4511E]/70 hover:shadow-[0_16px_32px_rgba(244,81,30,0.18)];
+  }
+
+  .ds-modal {
+    @apply rounded-[26px] border border-white/10 bg-[#121216];
+    box-shadow: 0 26px 68px rgba(0, 0, 0, 0.58);
+  }
+
+  .ds-surface {
+    @apply rounded-[22px] border border-white/10 bg-[#1D1D24];
+  }
+
+  .ds-pill-active {
+    @apply rounded-full bg-[#F4511E]/20 text-[#FF7A4D] border border-[#F4511E]/40;
   }
 }
